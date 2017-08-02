@@ -10,12 +10,6 @@
 		Group "External/uWebSockets"
 	}
 
-	Property
-	{
-//		MalterlibUsesOpenSSL true
-		MalterlibNoBoost true
-	}
-
 	Compile
 	{
 		!!MalterlibCompileSupportTabSetings true
@@ -28,7 +22,6 @@
 	{
 		!!CompileDialect "C"
 
-//		SearchPath "@(GeneratedDirectory)uWebSockets;@('src'->MakeAbsolute());@('../libuv/include'->MakeAbsolute());@(Compile.SearchPath)"
 		SearchPath "@(GeneratedDirectory)uWebSockets;@('src'->MakeAbsolute());@('../libuv/include'->MakeAbsolute());@('../boringssl/include'->MakeAbsolute())"
 
 		SearchPath "@('../boringssl/include'->MakeAbsolute());@(Compile.SearchPath)"
