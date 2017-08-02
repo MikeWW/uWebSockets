@@ -1,0 +1,54 @@
+
+
+%Target Lib_uWebSockets
+{
+
+	Target
+	{
+		BaseName "uWebSockets"
+		Type "StaticLibrary"
+		Group "External/uWebSockets"
+	}
+
+	Property
+	{
+//		MalterlibUsesOpenSSL true
+		MalterlibNoBoost true
+	}
+
+	Compile
+	{
+		!!MalterlibCompileSupportTabSetings true
+		IndentWidth 2
+		TabWidth 2
+		UsesTabs false
+	}
+
+	Compile
+	{
+		!!CompileDialect "C"
+
+//		SearchPath "@(GeneratedDirectory)uWebSockets;@('src'->MakeAbsolute());@('../libuv/include'->MakeAbsolute());@(Compile.SearchPath)"
+		SearchPath "@(GeneratedDirectory)uWebSockets;@('src'->MakeAbsolute());@('../libuv/include'->MakeAbsolute());@('../boringssl/include'->MakeAbsolute())"
+
+		SearchPath "@('../boringssl/include'->MakeAbsolute());@(Compile.SearchPath)"
+		SearchPath "@('../../SDK/zlib'->MakeAbsolute());@(Compile.SearchPath)"
+
+		PreprocessorDefines "WIN32_LEAN_AND_MEAN"
+		{
+			!!PlatformFamily Windows
+		}
+		
+		PrefixHeader ""
+
+		Warnings Minimal
+		Verbose true
+	}
+
+	%Group "Lib"
+	{
+		%File "src/*"
+	}
+
+}
+
